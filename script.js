@@ -52,9 +52,11 @@ let direction = "right"; // DEFINE A DIREÇÃO INICIAL DA COBRINHA.
         if(snake[0].y > 15 * box && direction == "down") { snake[0].y = 0};
         if(snake[0].y < 0 * box && direction == "up") { snake[0].y = 16 * box};
 
+        // CHAMA AS FUNÇÕES.
         criarBG();
         criarCobrinha();
         drawFood();
+
         // PEGA AS POSIÇÕES | TAMANHO DA COBRINHA.
         let snakeX = snake[0].x;
         let snakeY = snake[0].y;
@@ -65,7 +67,14 @@ let direction = "right"; // DEFINE A DIREÇÃO INICIAL DA COBRINHA.
         if (direction == "up") { snakeY -= box; };
         if (direction == "down") { snakeY += box; };
 
-        snake.pop(); // REMOVE UM ELEMENTO DE DENTRO DA ARRAY. | (obs: observação própria).
+        // VERIFICA AS POSIÇÕES DA COBRINHA E DA COMIDA.
+        if(snakeX != food.x || snakeY != food.y) {
+            snake.pop(); // REMOVE UM ELEMENTO DE DENTRO DA ARRAY. | (obs: observação própria).
+        } else {
+            food.x = Math.floor(Math.random() * 15 + 1) * box, 
+            food.y = Math.floor(Math.random() * 15 + 1) * box
+        }
+
 
         let newHead = { x: snakeX, y: snakeY }; // RECRIA A COBRINHA NOVAMENTE. | (obs: observação própria).
 
