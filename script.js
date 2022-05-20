@@ -46,6 +46,15 @@ let direction = "right"; // DEFINE A DIREÇÃO INICIAL DA COBRINHA.
 //------------------------------------------------------------------------------------//
     // DEFINE E CHAMA AS OUTRAS FUNÇÕES PRO JOGO FUNCIONAR.
     function iniciarJogo() {
+
+        // VERIFICA SE A COBRINHA VAI SE CHOCAR.
+        for (let i = 1; i < snake.length; i++) {
+            if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+                clearInterval(jogo);
+                alert("Game Over!");
+            }            
+        }
+
         // DEFINE O LIMITE DA TELA, SE ULTRAPASSAR, VOLTA PELO OUTRO LADO.
         if(snake[0].x > 15 * box && direction == "right") { snake[0].x = 0};
         if(snake[0].x < 0 * box && direction == "left") { snake[0].x = 16 * box};
@@ -75,6 +84,7 @@ let direction = "right"; // DEFINE A DIREÇÃO INICIAL DA COBRINHA.
             food.y = Math.floor(Math.random() * 15 + 1) * box
         }
 
+        
 
         let newHead = { x: snakeX, y: snakeY }; // RECRIA A COBRINHA NOVAMENTE. | (obs: observação própria).
 
